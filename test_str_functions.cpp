@@ -21,6 +21,7 @@ int main (void) {
 void test_my_puts (void) {
 
     char str [] = "Hello, world!";
+    
     printf ("Test function: my_puts ()\n");
     printf ("Inputing string: Hello, world!\n");
     printf ("Result: ");
@@ -32,6 +33,7 @@ void test_my_strchr (void) {
 
     char str [] = "0123456567890";
     int ch = '5';
+    
     printf ("Test function: my_strchr()\n");
     printf ("Inputing string: %s\nInputing symbol: %d\n", str, 5);
     printf("Result: ");
@@ -44,6 +46,7 @@ void test_my_strchr (void) {
 void test_my_strlen (void) {
 
     char str [] = "123456789";
+    
     printf ("Test function: my_strlen ()\n");
     printf ("Inputing string: %s\n", str);
     printf ("Result: %d", my_strlen(str));
@@ -54,6 +57,7 @@ void test_my_strcpy (void) {
 
     char str1 [] = "1234567890";
     char str2 [] = "12345\n678";
+    
     printf ("Test function: my_strcpy ()\n");
     printf ("Inputing string #1: ");
     puts (str1);
@@ -70,6 +74,7 @@ void test_my_strncpy (void) {
     char str1 [] = "1234567890";
     char str2 [] = "12345\n678";
     int symbols = 5;
+    
     printf ("Test function: my_strncpy ()\n");
     printf ("Inputing string #1: ");
     puts (str1);
@@ -86,6 +91,7 @@ void test_my_strcat (void) {
 
     char str1 [] = "1234567890";
     char str2 [] = "12345\n678";
+    
     printf ("Test function: my_strcat ()\n");
     printf ("Inputing string #1: ");
     puts (str1);
@@ -102,6 +108,7 @@ void test_my_strncat (void) {
     char str1 [] = "1234567890";
     char str2 [] = "12345\n678";
     int amount = 3;
+    
     printf ("Test function: my_strncat ()\n");
     printf ("Inputing string #1: ");
     puts (str1);
@@ -116,9 +123,10 @@ void test_my_strncat (void) {
 
 void test_my_strdup (void) {
 
-    printf ("Test function: my_strdup ()\n");
     char str1 [] = "1234567890";
     char * str2 = my_strdup (str1);
+    
+    printf ("Test function: my_strdup ()\n");
     printf ("Inputing string #1: ");
     puts (str1);
     printf ("Result: 2nd string is ");
@@ -128,9 +136,10 @@ void test_my_strdup (void) {
 
 void test_my_fgets (void) {
 	
-    printf ("Test function: my_fgets ()\n");
     FILE * file = fopen("file.txt", "r");
     char str [LEN];
+	
+    printf ("Test function: my_fgets ()\n");
     printf ("String in the file: ");
     my_fgets (str, LEN, file);
     puts (str);
@@ -139,9 +148,10 @@ void test_my_fgets (void) {
 
 void test_my_getline (void) {
 	
-	printf ("Test function: my_getline ()\n");
 	char str [LEN];
 	char delim = 'w';
+	
+	printf ("Test function: my_getline ()\n");
 	printf ("delim-symbol: %c\n", delim);
 	my_getline (str, 0, delim);
 	printf ("Result: ");
