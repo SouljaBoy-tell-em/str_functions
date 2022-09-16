@@ -156,5 +156,4 @@ void test_my_getline (void) {
 	my_getline (str, 0, delim);
 	printf ("Result: ");
 	puts (str);
-	
 }
