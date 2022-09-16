@@ -13,7 +13,7 @@ int main (void) {
     test_my_strncat ();
     test_my_strdup ();
     test_my_fgets ();
-	test_my_getline ();
+    test_my_getline ();
 
     return 0;
 }
@@ -116,7 +116,7 @@ void test_my_strncat (void) {
 
 void test_my_strdup (void) {
 
-	printf ("Test function: my_strdup ()\n");
+    printf ("Test function: my_strdup ()\n");
     char str1 [] = "1234567890";
     char * str2 = my_strdup (str1);
     printf ("Inputing string #1: ");
@@ -128,7 +128,7 @@ void test_my_strdup (void) {
 
 void test_my_fgets (void) {
 	
-	printf ("Test function: my_fgets ()\n");
+    printf ("Test function: my_fgets ()\n");
     FILE * file = fopen("file.txt", "r");
     char str [LEN];
     printf ("String in the file: ");
