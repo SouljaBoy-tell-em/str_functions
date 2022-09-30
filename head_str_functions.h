@@ -4,7 +4,6 @@
 #include <string.h>
 #include <math.h>
 #include <assert.h>
-#include <windows.h>
 
 
 #define LEN 50
@@ -33,3 +32,4 @@ void test_my_strncat (void);
 void test_my_strdup (void);
 void test_my_fgets (void);
 void test_my_getline (void);
+void test_my_getline_1 (void);
