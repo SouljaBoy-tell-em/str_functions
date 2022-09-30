@@ -1,5 +1,5 @@
 #include "head_str_functions.h"
-#include "str_functions.cpp"
+#include "str_functions.h"
 
 
 int main (void) {
@@ -13,7 +13,8 @@ int main (void) {
     test_my_strncat ();
     test_my_strdup ();
     test_my_fgets ();
-	test_my_getline ();
+    test_my_getline ();
+    test_my_getline_1 ();
 
     return 0;
 }
