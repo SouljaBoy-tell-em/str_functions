@@ -20,6 +20,7 @@ int my_puts (const char * str) {
 				return -1;
 }
 
+
 char * my_strchr (char * str, int ch) {
 
 		assert (str);
@@ -37,6 +38,7 @@ char * my_strchr (char * str, int ch) {
 
 		return (str + i);
 }
+
 
 unsigned int my_strlen (const char * str) {
 
@@ -68,6 +70,7 @@ char * my_strcpy (char * destptr, const char * strptr) {
 		return destptr;
 }
 
+
 char * my_strncpy (char * destptr, const char * strptr, int size) {
 
 		assert (destptr);
@@ -87,20 +90,20 @@ char * my_strncpy (char * destptr, const char * strptr, int size) {
 		return destptr;
 }
 
+
 char * my_strcat (char * destptr, const char * strptr) {
 
 		assert (destptr);
 		assert (strptr);
-
-		int i = strlen (strptr) + 1;
+        
+		int i = 0, len = strlen (destptr);
 
 		while (*strptr != '\0') {
 
-				*(destptr + i) = *strptr;
-				strptr++;
+				* (destptr + len + i) = *strptr;
 				i++;
+                strptr++;
 		}
-		*(destptr + i) = '\0';
 
 		return destptr;
 }
@@ -124,6 +127,7 @@ char * my_strncat (char * destptr, const char  * strptr, int size) {
 		return destptr;
 }
 
+
 char * my_strdup (const char * str) {
 
 		assert (str);
@@ -132,31 +136,24 @@ char * my_strdup (const char * str) {
 
 }
 
+
 char * my_fgets (char * str, int len, FILE * file) {
 
-		assert (str);
-		assert (isfinite (len));
+	assert(str);
+    assert(file);
 
-		int i = 0;
-		int ch = '\0';
+    int i = 0, ch = getc(file);
+    while ((i < len) && (ch != EOF) && (ch != '\n'))
+    {
+        str [i] = (char)ch;
+        ch = getc(file);
+        i++;
+    }
+    str [len] = '\0';
 
-		while ((ch = getc (file)) != EOF) {
-
-				if (ch == '\n')
-					break;
-
-				*str = ch;
-				str++;
-				i++;
-
-				if (i > len)
-					return NULL;
-		}
-		
-		*str = '\0';
-
-		return str;
+    return str;
 }
+
 
 char * my_getline (char * buf, size_t num, char delim) {
 
@@ -181,6 +178,7 @@ char * my_getline (char * buf, size_t num, char delim) {
 		return buf;
 }
 
+
 size_t my_getline_1 (char ** buf, int len, FILE * file) {
 
 		int ch = '\0', amount = 0;
@@ -202,7 +200,7 @@ size_t my_getline_1 (char ** buf, int len, FILE * file) {
 		if ((* buf) == NULL || len < amount)
 				* buf = (char *) calloc (amount, sizeof (char));
 
-		fseek (file, - (amount + 2), SEEK_CUR);
+		fseek (file, - (amount + 1), SEEK_CUR);
 		amount = 0;
 
 		while (strchr ("\n\0", (ch = getc (file))) == NULL) {
@@ -224,6 +222,7 @@ void test_my_puts (void) {
     my_puts (str);
     printf ("\n\n");
 }
+
 
 void test_my_strchr (void) {
 
@@ -249,6 +248,7 @@ void test_my_strlen (void) {
     printf ("\n\n");
 }
 
+
 void test_my_strcpy (void) {
 
     char str1 [] = "1234567890";
@@ -264,6 +264,7 @@ void test_my_strcpy (void) {
     puts (str1);
     printf ("\n\n");
 }
+
 
 void test_my_strncpy (void) {
 
@@ -283,10 +284,11 @@ void test_my_strncpy (void) {
     printf ("\n\n");
 }
 
+
 void test_my_strcat (void) {
 
-    char str1 [] = "1234567890";
-    char str2 [] = "12345\n678";
+    char str1 [100] = "1234567890";
+    char str2 [20] = "12345\n678";
 
     printf ("Test function: my_strcat ()\n");
     printf ("Inputing string #1: ");
@@ -299,10 +301,11 @@ void test_my_strcat (void) {
     printf ("\n\n");
 }
 
+
 void test_my_strncat (void) {
 
-    char str1 [] = "1234567890";
-    char str2 [] = "12345\n678";
+    char str1 [100] = "1234567890";
+    char str2 [20] = "12345\n678";
     int amount = 3;
 
     printf ("Test function: my_strncat ()\n");
@@ -317,6 +320,7 @@ void test_my_strncat (void) {
     printf ("\n\n");
 }
 
+
 void test_my_strdup (void) {
 
 	char str1 [] = "1234567890";
@@ -330,6 +334,7 @@ void test_my_strdup (void) {
     printf ("\n\n");
 }
 
+
 void test_my_fgets (void) {
 
 	FILE * file = fopen("file.txt", "r");
@@ -340,7 +345,9 @@ void test_my_fgets (void) {
     my_fgets (str, LEN, file);
     puts (str);
     printf ("\n\n");
+    fclose (file);
 }
+
 
 void test_my_getline (void) {
 
@@ -352,5 +359,20 @@ void test_my_getline (void) {
 	my_getline (str, 0, delim);
 	printf ("Result: ");
 	puts (str);
+    printf ("\n\n");
 
+}
+
+
+void test_my_getline_1 (void) {
+
+    char * str = (char * ) calloc (30, sizeof (char));
+    FILE * file = fopen ("file.txt", "r");
+
+    printf ("Test function: my_getline_1 ()\n");
+    my_getline_1 (&str, 30, file);
+    printf ("result: ");
+    puts (str);
+    fclose (file);
+    printf ("\n\n");
 }
